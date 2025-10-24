@@ -7,7 +7,7 @@ namespace Pschool.API.Repositories
     {
         Task<IEnumerable<Parent>> GetAllAsync();
         Task<Parent?> GetParentByIdAsync(ParentidDTO id);
-        Task<Parent> AddParentAsync(AddParentDTO parent);
+        Task<Parent> AddParentAsync(ParentsDTO parent);
         Task<Parent> UpdateParentAsync(UpdateParentDTO parent);
         Task<bool> DeleteParentAsync(ParentidDTO id);
     }

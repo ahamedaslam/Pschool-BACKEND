@@ -68,7 +68,7 @@ namespace Pschool.API.Services
             }
         }
 
-        public async Task<Response> AddParentAsync(AddParentDTO parent)
+        public async Task<Response> AddParentAsync(ParentsDTO parent)
         {
             try
             {

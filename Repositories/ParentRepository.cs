@@ -25,7 +25,7 @@ namespace Pschool.API.Repositories
                                         .FirstOrDefaultAsync(p => p.Id == parentId.Id);
         }
 
-        public async Task<Parent> AddParentAsync(AddParentDTO parentDto)
+        public async Task<Parent> AddParentAsync(ParentsDTO parentDto)
         {
             var parent = new Parent
             {

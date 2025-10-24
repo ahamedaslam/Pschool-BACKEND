@@ -53,7 +53,7 @@ namespace Pschool.API.Controllers
         }
 
         [HttpPost("CreateParent")]
-        public async Task<ActionResult<Response>> CreateParent([FromBody] AddParentDTO parent)
+        public async Task<ActionResult<Response>> CreateParent([FromBody] ParentsDTO parent)
         {
             try
             {
