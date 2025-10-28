@@ -45,13 +45,13 @@ namespace Pschool.API.Services
             return new Response { ResponseCode = "00", ResponseDescription = "Success", ResponseObject = student };
         }
 
-        public async Task<Response> AddAsync(StudentsDTO student)
+        public async Task<Response> AddAsync(AddStudentDTO student)
         {
             var added = await _repo.AddStudentAsync(student);
             return new Response { ResponseCode = "00", ResponseDescription = "Student added", ResponseObject = added };
         }
 
-        public async Task<Response> UpdateAsync(UpdStudentsDTO student)
+        public async Task<Response> UpdateAsync(StudentsDTO student)
         {
             var updated = await _repo.UpdateStudentAsync(student);
             if (updated == null)
@@ -60,9 +60,9 @@ namespace Pschool.API.Services
             return new Response { ResponseCode = "00", ResponseDescription = "Student updated", ResponseObject = updated };
         }
 
-        public async Task<Response> DeleteAsync(StudentsIdDTO request)
+        public async Task<Response> DeleteAsync(int id)
         {
-            var deleted = await _repo.DeleteStudentAsync(request);
+            var deleted = await _repo.DeleteStudentAsync(id);
             return new Response
             {
                 ResponseCode = deleted ? "00" : "01",

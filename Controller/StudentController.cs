@@ -82,7 +82,7 @@ namespace Pschool.API.Controllers
         }
 
         [HttpPost("CreateStudents")]
-        public async Task<ActionResult<Response>> CreateStudent(StudentsDTO student)
+        public async Task<ActionResult<Response>> CreateStudent(AddStudentDTO student)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace Pschool.API.Controllers
         }
 
         [HttpPut("UpdateStudent")]
-        public async Task<ActionResult<Response>> UpdateStudent(UpdStudentsDTO student)
+        public async Task<ActionResult<Response>> UpdateStudent(StudentsDTO student)
         {
             
 
@@ -125,12 +125,12 @@ namespace Pschool.API.Controllers
             }
         }
 
-        [HttpDelete("DeleteStudent")]
-        public async Task<ActionResult<Response>> DeleteStudent(StudentsIdDTO request)
+        [HttpDelete("DeleteStudent/{id}")]
+        public async Task<ActionResult<Response>> DeleteStudent(int  id)
         {
             try
             {
-                var resp = await _service.DeleteAsync(request);
+                var resp = await _service.DeleteAsync(id);
                 return Ok(resp);
             }
             catch (Exception ex)

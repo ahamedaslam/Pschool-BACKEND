@@ -34,9 +34,23 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ParentService>();
 builder.Services.AddScoped<StudentService>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorClient", policy =>
+    {
+        policy.WithOrigins(
+                "https://localhost:7031",  // Blazor Client (HTTPS)
+                "http://localhost:5031"    // Blazor Client (HTTP, optional)
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
-
+app.UseCors("AllowBlazorClient");
 //Test
 // Configure middleware
 if (app.Environment.IsDevelopment())

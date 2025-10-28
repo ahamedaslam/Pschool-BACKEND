@@ -6,11 +6,11 @@ namespace Pschool.API.Repositories
 {
     public interface IStudentRepository
     {
-        Task<IEnumerable<Student>> GetAllStudentsAsync();
+        Task<IEnumerable<StudentsDTO>> GetAllStudentsAsync();
         Task<IEnumerable<Student?>> GetStudentsByIdAsync(StudentsIdDTO id);
-        Task<Student> AddStudentAsync(StudentsDTO student);
-        Task<Student> UpdateStudentAsync(UpdStudentsDTO updateStudentDTO);
-        Task<bool> DeleteStudentAsync(StudentsIdDTO id);
+        Task<Student> AddStudentAsync(AddStudentDTO student);
+        Task<Student> UpdateStudentAsync(StudentsDTO updateStudentDTO);
+        Task<bool> DeleteStudentAsync(int id);
         Task<Student> GetStudentByParentIdAsync(ParentidDTO parentid);
     }
 }
