@@ -11,6 +11,6 @@ namespace Pschool.API.Repositories
         Task<Student> AddStudentAsync(AddStudentDTO student);
         Task<Student> UpdateStudentAsync(StudentsDTO updateStudentDTO);
         Task<bool> DeleteStudentAsync(int id);
-        Task<Student> GetStudentByParentIdAsync(ParentidDTO parentid);
+        Task<IEnumerable<Student>> GetStudentByParentIdAsync(ParentidDTO parentid);
     }
 }

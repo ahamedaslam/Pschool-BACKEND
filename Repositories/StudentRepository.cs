@@ -57,11 +57,14 @@ namespace Pschool.API.Repositories
         }
 
 
-        public async Task<Student> GetStudentByParentIdAsync(ParentidDTO request)
+        public async Task<IEnumerable<Student>> GetStudentByParentIdAsync(ParentidDTO request)
         {
-            var student =  await _context.Students.Include(s => s.Parent)
-                                         .FirstOrDefaultAsync(s => s.ParentId == request.Id);
-            return student;
+            var students = await _context.Students
+                .Include(s => s.Parent)
+                .Where(s => s.ParentId == request.Id)
+                .ToListAsync();
+
+            return students;
         }
 
         public async Task<IEnumerable<Student?>> GetStudentsByIdAsync(StudentsIdDTO request)
