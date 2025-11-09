@@ -97,7 +97,7 @@ namespace Pschool.API.Services
                 if (string.IsNullOrWhiteSpace(student.FullName))
                     return ResponseHelper.NotFound("Full name is required.");
 
-                if (student.ParentId <= 0)
+                if (student.ParentId == 0)
                     return ResponseHelper.NotFound("ParentId is required.");
 
                 var added = await _repo.AddStudentAsync(student);
@@ -108,7 +108,7 @@ namespace Pschool.API.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding student. LogId: {logId}", logId);
-                return ResponseHelper.ServerError("An error occurred while adding the student.");
+                return ResponseHelper.ServerError();
             }
         }
 
