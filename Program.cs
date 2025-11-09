@@ -8,6 +8,9 @@ using System;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
+DotNetEnv.Env.Load();
+builder.Configuration.AddEnvironmentVariables();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers()
@@ -25,8 +28,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+builder.Services.AddDbContext<AppDBContext>(options =>options.UseSqlServer(builder.Configuration["DB_CONNECTION_STRING"]));
+
+
 
 // Dependency injection
 builder.Services.AddScoped<IParentRepository, ParentRepository>();
@@ -41,13 +48,13 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
                 "https://localhost:7031",  // Blazor Client (HTTPS)
-                "http://localhost:5031"    // Blazor Client (HTTP, optional)
+                "http://localhost:5031"    // Blazor Client (HTTP)
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
-
+    
 var app = builder.Build();
 
 app.UseCors("AllowBlazorClient");
@@ -63,6 +70,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseHttpsRedirection();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

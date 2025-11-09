@@ -80,7 +80,7 @@ namespace Pschool.API.Repositories
 
 
             _context.Entry(existing).CurrentValues.SetValues(student);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();  
             return existing;
         }
     }
